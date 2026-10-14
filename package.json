@@ -1,0 +1,22 @@
+{
+  "name": "role-task-dashboard",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client && npm run build -w server",
+    "test": "npm test -w server",
+    "db:migrate": "npm run migrate -w server",
+    "admin:create": "npm run admin -w server",
+    "format": "prettier --write client/src server/src server/tests scripts README.md *.json *.yml client/*.json client/*.ts server/*.json",
+    "test:browser": "node --env-file=.env scripts/browser-check.cjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "playwright": "^1.64.0",
+    "prettier": "^3.9.10"
+  }
+}
